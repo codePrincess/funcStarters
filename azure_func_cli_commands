@@ -1,10 +1,25 @@
-az group create --name AzureMeetupKarlsruhe --location westeurope
+az group create \
+        --name AzureMeetupKarlsruhe \
+        --location westeurope
 
-az storage account create --name karlsruhemeetupstorage1 --location westeurope --resource-group AzureMeetupKarlsruhe --sku Standard_LRS
+az storage account create \
+        --name karlsruhemeetupstorage1 \
+        --location westeurope \
+        --resource-group AzureMeetupKarlsruhe \
+        --sku Standard_LRS
 
-az functionapp create --name KarlsruheFunc --storage-account karlsruhemeetupstorage1 --resource-group AzureMeetupKarlsruhe --consumption-plan-location westeurope
+az functionapp create \
+        --name KarlsruheFunc \
+        --storage-account karlsruhemeetupstorage1 \
+        --resource-group AzureMeetupKarlsruhe \
+        --consumption-plan-location westeurope
 
-az functionapp deployment source config --name KarlsruheFunc --resource-group AzureMeetupKarlsruhe --branch master --repo-url https://github.com/codePrincess/funcStarters --manual-integration 
+az functionapp deployment source config \
+        --name KarlsruheFunc \
+        --resource-group AzureMeetupKarlsruhe \
+        --branch master \
+        --repo-url https://github.com/codePrincess/funcStarters \
+        --manual-integration 
 
 curl http://KarlsruheFunc.azurewebsites.net/api/csharpstarter?name=Manu
 curl http://KarlsruheFunc.azurewebsites.net/api/jsstarter?name=Manu
