@@ -6,7 +6,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     // parse query parameter
     string name = req.GetQueryNameValuePairs()
-        .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+        .FirstOrDefault(q => string.Compare(q.Key, "cakename", true) == 0)
         .Value;
 
     // Get request body
@@ -16,6 +16,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     name = name ?? data?.name;
 
     return name == null
-        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-        : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
+        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name for the cake on the query string or in the request body")
+        : req.CreateResponse(HttpStatusCode.OK, "Mhmmm this " + name + " cake is nooo lie!");
 }
